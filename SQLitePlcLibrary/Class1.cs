@@ -1,7 +1,9 @@
 ﻿using SQLite;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 
 namespace SQLitePlcLibrary
 {
@@ -24,8 +26,13 @@ namespace SQLitePlcLibrary
 
         private static SQLiteConnection CreateConnection()
         {
-            //string dbPath = Path.Combine(Environment.CurrentDirectory, "AllergyData.db");
-            return new SQLiteConnection(Path.Combine(Environment.CurrentDirectory, "AllergyData.db"));
+            //string assemblyFile = (
+            //    new System.Uri(Assembly.GetExecutingAssembly().CodeBase)
+            //).AbsolutePath; //"C:/Users/oxbyd/OneDrive%20-%20Sheffield%20Hallam%20University/SQLiteTest/SQLiteTest/bin/Debug/net6.0/SQLitePlcLibrary.dll"
+            //var buildDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            //string dbPath = Path.Combine(Environment.CurrentDirectory, "AllergyData.db"); // this is looking at the SQLiteTest bin not the library
+            string dbPath = Path.Combine("C:\\Users\\oxbyd\\OneDrive - Sheffield Hallam University\\SQLiteTest\\SQLitePlcLibrary\\bin\\Debug\\netstandard2.0", "AllergyData.db");
+            return new SQLiteConnection(dbPath);
         }
 
         private static string SearchDB(SQLiteConnection db)
